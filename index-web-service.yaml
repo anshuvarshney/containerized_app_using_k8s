@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: index-web-service
+  labels:
+    name: index-web-service
+    app: demo-web-page
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    name: index-web-pod
+    app: demo-web-page    

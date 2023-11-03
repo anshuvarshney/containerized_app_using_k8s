@@ -1,0 +1,33 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: index-web-deploy
+  labels:
+    name: index-web-deploy
+    app: demo-web-page
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: index-web-pod
+      app: demo-web-page
+  template:
+    metadata:
+      name: index-web-pod
+      labels:
+        name: index-web-pod
+        app: demo-web-page
+    spec:
+      containers:
+      - name: index-web-container01
+        image: sumuduliyan/index-web
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
